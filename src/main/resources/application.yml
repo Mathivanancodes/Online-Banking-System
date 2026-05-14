@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: online-banking-system
+  datasource:
+    url: jdbc:h2:mem:online_bank;DB_CLOSE_DELAY=-1
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+    show-sql: true
+    open-in-view: false
+  mail:
+    host: smtp.mailtrap.io
+    port: 2525
+    username: test-username
+    password: test-password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+  profiles:
+    active: dev
+
+app:
+  jwt:
+    secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+    access-expiry: 900000     # 15 minutes
+    refresh-expiry: 604800000 # 7 days
+  cors:
+    allowed-origins: "*"
+
+logging:
+  level:
+    root: INFO
+    com.banking: DEBUG
+  file:
+    name: logs/app.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

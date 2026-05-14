@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnlineBank | Next-Gen Finance</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background Particles/Gradients -->
+    <div class="bg-animated"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Notification Toast -->
+    <div id="toast-container"></div>
+
+    <!-- MAIN APP CONTAINER -->
+    <div id="app">
+        
+        <!-- ================= LANDING PAGE ================= -->
+        <section id="landing-page" class="view active">
+            <header class="glass-header">
+                <div class="logo">
+                    <i class="fa-brands fa-space-awesome neon-text-cyan"></i>
+                    <span>Online<span class="neon-text-purple">Bank</span></span>
+                </div>
+                <nav>
+                    <a href="#" onclick="showView('landing-page')">Home</a>
+                    <a href="#features">Features</a>
+                    <button class="btn-neon-cyan" onclick="showView('auth-page'); toggleAuthMode('login')">Login</button>
+                    <button class="btn-neon-purple" onclick="showView('auth-page'); toggleAuthMode('register')">Get Started</button>
+                </nav>
+            </header>
+
+            <main class="hero-section">
+                <div class="hero-content">
+                    <h1 class="glow-text">Future of Digital Banking is <span class="neon-text-cyan">Here</span></h1>
+                    <p>Experience zero-gravity finance. Seamless, secure, and futuristic online banking designed for the modern world.</p>
+                    <div class="hero-buttons">
+                        <button class="btn-neon-purple large" onclick="showView('auth-page'); toggleAuthMode('register')">Open an Account</button>
+                        <button class="btn-glass large"><i class="fa-solid fa-play"></i> Watch Demo</button>
+                    </div>
+                </div>
+                <div class="hero-graphics">
+                    <div class="floating-card glass-card card-1">
+                        <i class="fa-solid fa-wallet"></i>
+                        <div class="card-info">
+                            <span>Total Balance</span>
+                            <h3>$14,230.50</h3>
+                        </div>
+                    </div>
+                    <div class="floating-card glass-card card-2">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                        <div class="card-info">
+                            <span>Monthly Income</span>
+                            <h3 class="neon-text-cyan">+$5,400.00</h3>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <!-- ================= AUTH PAGE (LOGIN/REGISTER) ================= -->
+        <section id="auth-page" class="view">
+            <div class="auth-container glass-card">
+                <div class="auth-toggle">
+                    <button id="btn-login-tab" class="active" onclick="toggleAuthMode('login')">Login</button>
+                    <button id="btn-register-tab" onclick="toggleAuthMode('register')">Register</button>
+                </div>
+                
+                <!-- Login Form -->
+                <form id="login-form" class="auth-form active" onsubmit="handleLogin(event)">
+                    <h2>Welcome Back</h2>
+                    <p>Enter your credentials to access your terminal.</p>
+                    <div class="input-group">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="login-email" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="login-password" placeholder="Password" required>
+                        <i class="fa-solid fa-eye-slash toggle-password" onclick="togglePassword('login-password')"></i>
+                    </div>
+                    <div class="form-options">
+                        <label><input type="checkbox"> Remember me</label>
+                        <a href="#" class="neon-text-cyan">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn-neon-cyan w-100">Authenticate <i class="fa-solid fa-arrow-right"></i></button>
+                </form>
+
+                <!-- Register Form -->
+                <form id="register-form" class="auth-form" onsubmit="handleRegister(event)">
+                    <h2>Initialize Account</h2>
+                    <p>Join the OnlineBank network today.</p>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="reg-firstname" placeholder="First Name" required>
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="reg-lastname" placeholder="Last Name" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="reg-email" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-phone"></i>
+                        <input type="tel" id="reg-phone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-id-card"></i>
+                        <input type="text" id="reg-nationalid" placeholder="National ID" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="reg-password" placeholder="Secure Password" required>
+                        <i class="fa-solid fa-eye-slash toggle-password" onclick="togglePassword('reg-password')"></i>
+                    </div>
+                    <button type="submit" class="btn-neon-purple w-100">Initialize <i class="fa-solid fa-rocket"></i></button>
+                </form>
+            </div>
+            <button class="back-btn glass-btn" onclick="showView('landing-page')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+        </section>
+
+        <!-- ================= DASHBOARD PAGE ================= -->
+        <section id="dashboard-page" class="view dashboard-layout">
+            <aside class="sidebar glass-card">
+                <div class="logo">
+                    <i class="fa-brands fa-space-awesome neon-text-cyan"></i>
+                    <span>OnlineBank</span>
+                </div>
+                <nav class="side-nav">
+                    <a href="#" class="active" onclick="switchDashTab('overview')"><i class="fa-solid fa-border-all"></i> Overview</a>
+                    <a href="#" onclick="switchDashTab('transfer')"><i class="fa-solid fa-money-bill-transfer"></i> Transfer</a>
+                    <a href="#" onclick="switchDashTab('transactions')"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                    <a href="#" onclick="switchDashTab('loans')"><i class="fa-solid fa-building-columns"></i> Loans</a>
+                    <a href="#" onclick="switchDashTab('cards')"><i class="fa-solid fa-credit-card"></i> Cards</a>
+                </nav>
+                <div class="sidebar-bottom">
+                    <a href="#" onclick="switchDashTab('settings')"><i class="fa-solid fa-gear"></i> Settings</a>
+                    <a href="#" onclick="handleLogout()" class="text-danger"><i class="fa-solid fa-right-from-bracket"></i> Disconnect</a>
+                </div>
+            </aside>
+
+            <main class="dashboard-main">
+                <header class="dash-header glass-card">
+                    <div class="user-greeting">
+                        <h2 id="user-name-display">Welcome, Commander</h2>
+                        <p class="text-muted" id="user-role-display">Terminal Access Granted</p>
+                    </div>
+                    <div class="dash-actions">
+                        <button class="icon-btn glass-btn"><i class="fa-solid fa-bell"></i><span class="badge">3</span></button>
+                        <div class="avatar-circle">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Avatar">
+                        </div>
+                    </div>
+                </header>
+
+                <div class="dash-content">
+                    
+                    <!-- TAB: OVERVIEW -->
+                    <div id="tab-overview" class="dash-tab active">
+                        <div class="stats-grid">
+                            <div class="stat-card glass-card glow-cyan">
+                                <div class="stat-icon"><i class="fa-solid fa-wallet"></i></div>
+                                <div class="stat-info">
+                                    <span class="text-muted">Available Balance</span>
+                                    <h2 id="dash-balance">$0.00</h2>
+                                </div>
+                            </div>
+                            <div class="stat-card glass-card glow-purple">
+                                <div class="stat-icon"><i class="fa-solid fa-vault"></i></div>
+                                <div class="stat-info">
+                                    <span class="text-muted">Savings</span>
+                                    <h2 id="dash-savings">$0.00</h2>
+                                </div>
+                            </div>
+                            <div class="stat-card glass-card glow-blue">
+                                <div class="stat-icon"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+                                <div class="stat-info">
+                                    <span class="text-muted">Total Expenses</span>
+                                    <h2 id="dash-expenses">$0.00</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-grid-2">
+                            <div class="glass-card recent-tx">
+                                <div class="card-header">
+                                    <h3>Recent Signals</h3>
+                                    <button class="glass-btn small" onclick="switchDashTab('transactions')">View All</button>
+                                </div>
+                                <div class="tx-list" id="recent-transactions-list">
+                                    <!-- Populated by JS -->
+                                    <div class="loader">Scanning...</div>
+                                </div>
+                            </div>
+                            
+                            <div class="glass-card quick-transfer">
+                                <div class="card-header">
+                                    <h3>Quick Hyper-Jump</h3>
+                                </div>
+                                <form onsubmit="handleQuickTransfer(event)" class="quick-transfer-form">
+                                    <div class="input-group">
+                                        <i class="fa-solid fa-hashtag"></i>
+                                        <input type="text" id="qt-account" placeholder="Recipient Account No." required>
+                                    </div>
+                                    <div class="input-group">
+                                        <i class="fa-solid fa-dollar-sign"></i>
+                                        <input type="number" id="qt-amount" placeholder="Amount" required min="1">
+                                    </div>
+                                    <button type="submit" class="btn-neon-cyan w-100">Initiate Transfer <i class="fa-solid fa-bolt"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: TRANSACTIONS -->
+                    <div id="tab-transactions" class="dash-tab">
+                        <div class="glass-card full-height">
+                            <div class="card-header">
+                                <h3>Transaction History</h3>
+                                <div class="filters">
+                                    <input type="text" class="glass-input" placeholder="Search...">
+                                    <button class="btn-neon-purple small"><i class="fa-solid fa-download"></i> Export</button>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="glass-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ref No</th>
+                                            <th>Date</th>
+                                            <th>Description</th>
+                                            <th>Type</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="full-transactions-list">
+                                        <!-- JS populates -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB: TRANSFER -->
+                    <div id="tab-transfer" class="dash-tab">
+                        <div class="glass-card center-card">
+                            <h2>Fund Transfer Protocol</h2>
+                            <p class="text-muted">Transfer credits securely across the network.</p>
+                            <form onsubmit="handleFullTransfer(event)" class="transfer-form mt-3">
+                                <div class="input-group">
+                                    <label>Source Account</label>
+                                    <select id="tf-source" class="glass-select" required>
+                                        <!-- JS populates -->
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>Destination Account Number</label>
+                                    <input type="text" id="tf-dest" placeholder="10-digit Account Number" required pattern="\d{10}">
+                                </div>
+                                <div class="input-group">
+                                    <label>Amount (USD)</label>
+                                    <input type="number" id="tf-amount" placeholder="0.00" required min="1">
+                                </div>
+                                <div class="input-group">
+                                    <label>Remarks / Memo</label>
+                                    <input type="text" id="tf-remarks" placeholder="Optional">
+                                </div>
+                                <button type="submit" class="btn-neon-cyan w-100 mt-2">Execute Transfer <i class="fa-solid fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </section>
+
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
